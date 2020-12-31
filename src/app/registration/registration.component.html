@@ -1,0 +1,12 @@
+
+<div class="container">
+    
+    <div class="alert alert-warning" *ngIf='checkLogin()'>
+        {{errorMessage}}
+
+    </div>
+    <div>User Name: <input [value]="username" (input)="username= $event.target.value">
+        Password: <input [value]="password" (input)="password= $event.target.value">
+        <button class="btn btn-success"  (click)=handleRegistration(username,password) >Register</button>
+    </div>
+</div>

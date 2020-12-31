@@ -1,0 +1,19 @@
+<header>
+<h1>STOCKS</h1>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Welcome</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a >About</a></li>
+        <li><a *ngIf = "service.isLogged" routerLink= "/stock">My Stocks</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a  *ngIf = "!service.isLogged" routerLink="/register"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+        <li><a   *ngIf = "service.isLogged" routerLink= "/login" (click) = service.logout()><span class="glyphicon glyphicon-log-in"></span>Logout</a></li> 
+      </ul>
+    </div>
+  </nav>
+</header>
