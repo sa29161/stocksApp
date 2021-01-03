@@ -3,6 +3,7 @@ import { StockDataService } from '../service/stock-data.service';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import { InfoComponent } from '../info/info.component';
 @Component({
   selector: 'app-stock',
   templateUrl: './stock.component.html',
@@ -11,16 +12,17 @@ import {map, startWith} from 'rxjs/operators';
 export class StockComponent implements OnInit {
   stock: Stock;
   info: Info;
-  company: CompanyInfo;
   name: string;
   date: string;
+  obj: any;
+
 
   constructor(
     private stockService: StockDataService
   ) { }
 
   ngOnInit(): void {
-
+ 
   }
 
 
@@ -28,7 +30,9 @@ export class StockComponent implements OnInit {
 getStocks(){
   this.stockService.retrieveAllStocks(this.name).subscribe(
     response => {
+  
       this.stock = response;
+      console.log(response)
    
     
     
@@ -42,22 +46,21 @@ this.stockService.retrieveInfo(this.name).subscribe(
   response =>{
     this.info = response;
     this.date = this.info["Meta Data"]["3. Last Refreshed"];
-    this.getCompanyInfo();
+   // this.getCompanyInfo();
    
   }
 )
 }
 
-getCompanyInfo(){
-  this.stockService.retrieveCompanyInfo(this.name).subscribe(
-    response =>{
-      this.company = response;
-      console.log(this.info);
-    }
-  )
-  }
+setVar(i){
+  console.log(i);
+  this.stockService.name = this.stock.bestMatches[i]["1. symbol"];
+}
+
+
 }
 export class Stock{
+  results: any;
   constructor(
     public bestMatches: string,
     public symbol: string,
@@ -66,12 +69,6 @@ export class Stock{
 }
 
 export class Info{
-  constructor(
-
-  ){}
-}
-
-export class CompanyInfo{
   constructor(
 
   ){}

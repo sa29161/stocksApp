@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../service/data.service';
-import { Item } from '../stock/stock.component';
+import { map } from 'rxjs/operators';
+import { DataService, Tutorial } from '../service/data.service';
+
 
 @Component({
   selector: 'app-stock-list',
@@ -8,18 +9,46 @@ import { Item } from '../stock/stock.component';
   styleUrls: ['./stock-list.component.css']
 })
 export class StockListComponent implements OnInit {
-
-  stock: Item;
+  
+  tutorials: Tutorial[];
+  tutorial: Tutorial = new Tutorial();
+  submitted = false;
+  show = true;
 
   constructor(
-    private service:DataService
+
+    public service: DataService
+
   ) { }
 
   ngOnInit(): void {
+   this.retrieveTutorials();
+  
   }
 
-  createItem(){
-    this.service.createItem(this.stock);
+  retrieveTutorials(): void {
+    this.service.getAll().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(data => {
+      this.tutorials = data;
+    });
+  }
+
+
+  saveTutorial(): void {
+    this.service.create(this.tutorial).then(() => {
+      console.log('Created new item successfully!');
+      this.submitted = true;
+    });
+  }
+
+  newTutorial(): void {
+    this.submitted = false;
+    this.tutorial = new Tutorial();
   }
 
 }

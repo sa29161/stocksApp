@@ -20,8 +20,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+
 import { StockListComponent } from './stock-list/stock-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthGuard } from './core/auth.guard';
+import { InfoComponent } from './info/info.component';
+import { AddStockComponent } from './add-stock/add-stock.component';
 
 
 @NgModule({
@@ -33,7 +37,9 @@ import { StockListComponent } from './stock-list/stock-list.component';
     RegistrationComponent,
     StockComponent,
     LogoutComponent,
-    StockListComponent
+    StockListComponent,
+    InfoComponent,
+    AddStockComponent
   ],
   imports: [
     BrowserModule,
@@ -48,9 +54,11 @@ import { StockListComponent } from './stock-list/stock-list.component';
     MatAutocompleteModule,
     MatInputModule,
     ReactiveFormsModule,
-    AngularFireDatabaseModule
+    BrowserAnimationsModule
   ],
   providers: [ 
+
+    AuthGuard
     ],
   bootstrap: [AppComponent]
 })

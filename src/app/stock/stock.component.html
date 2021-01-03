@@ -1,12 +1,24 @@
- <input value = "text" [(ngModel)]="name">
-<!-- <button (click) = getStocks()>Search</button> -->
-<!-- <li *ngFor = "let item of stock.bestMatches">{{item["1. symbol"]}}</li> -->
- <button (click) = getInfo()>Info</button>
- 
-<h3>Market Summary: {{company["Name"]}} </h3> 
-{{info["Meta Data"]["3. Last Refreshed"]}}
-<li><span class="glyphicon">
-{{info["Time Series (Daily)"][date]["1. open"]}}
-</span>
-</li>
+
+
+ <div class="form-group">
+    <input  class="form-control" value = "text" [(ngModel)]="name" (input)="$event.target.value.length > 0 && getStocks()">
+        
+    </div>
+
+
+  <ul class="list-group">
+    <li class="list-group-item"
+        *ngFor="let item of stock.bestMatches; let i = index"
+        
+        >
+      <a routerLink="/info" (click) = setVar(i)
+      >{{item["1. symbol"]}} ({{item["2. name"]}})
+      </a>
+    </li>
+  </ul>
+
+
+
+
+
 

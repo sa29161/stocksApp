@@ -6,6 +6,7 @@ import { Stock } from '../stock/stock.component';
   providedIn: 'root'
 })
 export class StockDataService {
+  name: string
 
   constructor(private http:HttpClient) { }
 
