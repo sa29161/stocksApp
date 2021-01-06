@@ -16,7 +16,8 @@ export class InfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getCompanyInfo();
+    this.getCompanyInfo()
+
   }
 
   getCompanyInfo(){

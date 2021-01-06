@@ -11,7 +11,7 @@ export class AuthService {
 
   invalidLogin = false;
   isLogged = false;
-  
+
 
   constructor(
 
@@ -29,6 +29,7 @@ export class AuthService {
         this.invalidLogin = false;
         
         
+        
       })
       .catch(err => {
         this.invalidLogin = true;
@@ -41,27 +42,33 @@ export class AuthService {
     this.auth
       .signInWithEmailAndPassword(email, password)
       .then(value => {
-        
-        this.route.navigate(['stock']);
+        this.storeSession();
+        this.route.navigate(['logout']);
+        this.isLogged = false;
       })
       .catch(err => {
-   
+        this.isLogged = true;
         console.log('Something went wrong:',err.message);
       });
   }
 
   logout() {
-    
-    this.auth.signOut();
-  
-    
+    localStorage.removeItem('email');
+    sessionStorage.removeItem('authenticateuser');
+    this.auth.signOut(); 
   }
 
-
-
-isLoggedIn(){
-return this.isLogged;
+ storeSession(){
+      this.auth.authState.subscribe(user =>{
+        if(user){
+          sessionStorage.setItem('authenticateuser',user.uid);}
+      })
   }
+
+isUserLoggedIn(){
+  let user = sessionStorage.getItem('authenticateuser');
+  return !(user === null);
+}
 
 
 }

@@ -59,8 +59,10 @@ setVar(i){
 
 
 }
+
 export class Stock{
   results: any;
+  ticker: string;
   constructor(
     public bestMatches: string,
     public symbol: string,
@@ -74,8 +76,4 @@ export class Info{
   ){}
 }
 
-export class Item{
-  constructor(
-   
-  ){}
-}
+

@@ -1,6 +1,6 @@
 <h1>Login</h1>
 <div class="container">
-    <div class="alert alert-warning" *ngIf='!checkLogin()'  (click)=handleLogin(username,password) >
+    <div class="alert alert-warning" *ngIf='service.isLogged'>
         {{errorMessage}}
 
     </div>
@@ -20,7 +20,7 @@
         
         <!-- <button class="btn btn-success" (click)=onClick()>Login</button> -->
         &nbsp;
-        <button class="glyphicon glyphicon-user" (click)=handleLogin(username,password)>Login</button>
+        <button  class="glyphicon glyphicon-user" (click)=handleLogin(username,password) >Login</button>
 
     </div>
 

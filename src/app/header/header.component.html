@@ -8,12 +8,12 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Home</a></li>
         <li><a >About</a></li>
-        <li><a *ngIf = "!service.isLoggedIn()" routerLink= "/stock">Search</a></li>
-        <li><a *ngIf = "!service.isLoggedIn()" routerLink= "/list">My Stocks</a></li>
+        <li><a *ngIf = "service.isUserLoggedIn()" routerLink= "/stock">Search</a></li>
+        <li><a *ngIf = "service.isUserLoggedIn()" routerLink= "/list">My Stocks</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a  *ngIf = "!service.isLoggedIn()" routerLink="/register"><span class="glyphicon glyphicon-user"></span>Register</a></li>
-        <li><a  *ngIf = "!service.isLoggedIn()" routerLink= "/login" (click) = service.logout()><span class="glyphicon glyphicon-log-in"></span>Logout</a></li> 
+        <li><a  *ngIf = "!service.isUserLoggedIn()" routerLink="/register"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+        <li><a  *ngIf = "service.isUserLoggedIn()" routerLink= "/login" (click) = service.logout()><span class="glyphicon glyphicon-log-in"></span>Logout</a></li> 
       </ul>
     </div>
   </nav>

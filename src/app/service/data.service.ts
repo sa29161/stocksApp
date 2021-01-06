@@ -3,68 +3,53 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase, AngularFireList} from '@angular/fire/database';
 
 
-export class Tutorial{
+export class Item{
   key?: string | null;
-  title?: string;
-  description?: string;
-  published?: boolean;
+  results: any
+  //ticker?: string;
+  //description?: string;
+  //published?: boolean;
 
 }
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  private dbPath = '/users';
-  tutorialsRef: AngularFireList<Tutorial>;
+  public dbPath = '/tutorials';
   email: string;
-  arr: Tutorial[] = [];
+  items: AngularFireList<Item>;
 
-
-  constructor(private db: AngularFireDatabase, private auth: AngularFireAuth) {
-   this.auth.authState.subscribe(user =>{
-     if(user) this.email = user.uid;
+  constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
+   this.afAuth.authState.subscribe(user =>{
+     if(user){
+     this.email = user.uid; localStorage.setItem('email', user.uid);}
    })
    
-   }
-
-
-  getAll(): AngularFireList<Tutorial> {
-    if(!this.email) return;
-    this.tutorialsRef = this.db.list(`users/${this.email}`);
-    return this.tutorialsRef;
-  }
-
-  getArr(): Tutorial[]{
-    if(!this.email) return;
-    this.db.list(`users/${this.email}`).valueChanges()
-    .subscribe(
-      response => {
-        this.arr = response;
-        console.log(this.arr);
-        return this.arr;
-      }
-    )
-
   }
 
 
+  getAll(): AngularFireList<Item> {
+if(localStorage.getItem('email') === null) return;
+ this.email = localStorage.getItem('email');
+   console.log(this.email);
+   this.items = this.db.list(`users/${this.email}`);
+   return this.items;
+  }
 
-  create(tutorial: Tutorial): any{
-   if(!this.email) return;
-   this.getAll();
-   this.getArr();
-  return this.tutorialsRef.push(tutorial);
+  create(item: Item): any {
+   if(localStorage.getItem('email') === null) return;
+    return this.items.push(item);
   }
 
   update(key: string, value: any): Promise<void> {
-    return this.tutorialsRef.update(key, value);
+    return this.items.update(key, value);
   }
 
   delete(key: string): Promise<void> {
-    return this.tutorialsRef.remove(key);
+    return this.items.remove(key);
   }
 
   deleteAll(): Promise<void> {
-    return this.tutorialsRef.remove();
+    return this.items.remove();
   }
 }

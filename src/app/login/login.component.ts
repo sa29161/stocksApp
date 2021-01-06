@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   password: string
   errorMessage = 'invalid credentials'
 
+
   constructor(
     public route: Router,
     public service: AuthService
@@ -32,7 +33,5 @@ this.route.navigate(['register'])
 }
 
 
-checkLogin(){
-return true;
-}
+
 }

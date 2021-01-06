@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { DataService, Tutorial } from '../service/data.service';
+import { DataService, Item} from '../service/data.service';
+import { StockDataService } from '../service/stock-data.service';
 
 
 @Component({
@@ -10,23 +11,27 @@ import { DataService, Tutorial } from '../service/data.service';
 })
 export class StockListComponent implements OnInit {
   
-  tutorials: Tutorial[];
-  tutorial: Tutorial = new Tutorial();
+  items: Item[] = [];
+  item: any
   submitted = false;
   show = true;
+  name: string;
 
   constructor(
 
-    public service: DataService
+    public service: DataService,
+    public dataService: StockDataService
 
   ) { }
 
   ngOnInit(): void {
-   this.retrieveTutorials();
+    
+   this.retrieveItems();
+
   
   }
 
-  retrieveTutorials(): void {
+  retrieveItems(): void {
     this.service.getAll().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
@@ -34,21 +39,30 @@ export class StockListComponent implements OnInit {
         )
       )
     ).subscribe(data => {
-      this.tutorials = data;
+      this.items = data;
     });
   }
 
 
-  saveTutorial(): void {
-    this.service.create(this.tutorial).then(() => {
-      console.log('Created new item successfully!');
+  saveItem(): void {
+    this.service.create(this.item).then(() => {
+      console.log('Created new item successfully!')
+      console.log(this.item);
       this.submitted = true;
     });
   }
 
-  newTutorial(): void {
+  newItem(): void {
+    this.item = new Item();
+    this.dataService.getCompanyInfo(this.name)
+    .subscribe(response =>{
+      this.item = response;
+      this.item.results = response.results;
+      console.log(response);
+      this.saveItem();
+    })
     this.submitted = false;
-    this.tutorial = new Tutorial();
+   
   }
 
 }
