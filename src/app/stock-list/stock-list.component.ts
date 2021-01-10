@@ -16,6 +16,7 @@ export class StockListComponent implements OnInit {
   submitted = false;
   show = true;
   name: string;
+  key: string;
 
   constructor(
 
@@ -25,10 +26,29 @@ export class StockListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
-   this.retrieveItems();
-
   
+   this.retrieveItems();
+  
+  
+  }
+
+  updateItems(){
+    
+    for(var index in this.items){
+      this.key = this.items[index].key;
+      this.item = this.getItem(this.items[index].results[0].T);
+      this.items[index] = this.item;
+      this.items[index].key = this.key;
+      console.log(this.items[index].key);
+  }}
+
+  getItem(ticker: string): Item{
+    let newItem = new Item();
+    this.dataService.getCompanyInfo(ticker)
+    .subscribe(response =>{
+     newItem.results = response.results;
+    })
+    return newItem;
   }
 
   retrieveItems(): void {
@@ -40,8 +60,10 @@ export class StockListComponent implements OnInit {
       )
     ).subscribe(data => {
       this.items = data;
+     this.updateItems();
     });
   }
+
 
 
   saveItem(): void {
@@ -57,12 +79,15 @@ export class StockListComponent implements OnInit {
     this.dataService.getCompanyInfo(this.name)
     .subscribe(response =>{
       this.item = response;
-      this.item.results = response.results;
-      console.log(response);
+      this.item.results = response.results
       this.saveItem();
     })
     this.submitted = false;
    
+  }
+
+  DeleteItem(item){
+    this.service.delete(item.key);
   }
 
 }

@@ -1,11 +1,55 @@
-<h3>Market Summary: </h3> 
+<div class="container">
+    <table class="table">
+      
+      <thead>
+        <h4>Stocks List</h4>
+        <tr>
+            <th>Ticker</th>
+            <th>Closing Price</th>
+            <th>Average Price</th>
+            <th>Opening Price</th>
+            <th>Highest Price</th>
+            <th>Lowest Price</th>
 
-<li><span class="glyphicon">
-{{company["ticker"]}}
-{{company.results[0].c}}
-{{company.results[0].vw}}
-{{company.results[0].o}}
-{{company.results[0].h}}
-{{company.results[0].l}}
-</span>
-</li>  
+        </tr>
+    </thead>
+    <tbody>
+
+       <td>{{company["ticker"]}}</td> 
+       <td> ${{company.results[0].c}}</td>
+       <td>${{company.results[0].vw}}</td>
+        <td>${{company.results[0].o}}</td>
+        <td>${{company.results[0].h}}</td>
+        <td> ${{company.results[0].l}}</td>
+
+
+    </tbody>
+    </table>
+</div>
+
+
+
+<div class="container">
+    <table class="table">
+      
+      <thead>
+        <h4>News</h4>
+        <tr>
+            <th>Title</th>
+     
+        </tr>
+    </thead>
+    <tbody>
+        <tr
+          *ngFor="let news of news.articles"
+        >
+       <td>{{news.title}}
+           <br>
+        <img src={{news.urlToImage}} style="width:128px;height:128px;">
+        <a href={{news.url}}>Read Story</a>
+       </td>
+   
+        </tr>
+    </tbody>
+    </table>
+</div>

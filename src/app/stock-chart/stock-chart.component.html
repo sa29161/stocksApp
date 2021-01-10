@@ -1,0 +1,17 @@
+<div class = "container">
+<ngx-charts-line-chart
+[scheme]="colorScheme"
+[results]="single"
+[gradient]="gradient"
+[xAxis]="showXAxis"
+[yAxis]="showYAxis"
+[legend]="showLegend"
+[showXAxisLabel]="showXAxisLabel"
+[showYAxisLabel]="showYAxisLabel"
+[xAxisLabel]="xAxisLabel"
+[yAxisLabel]="yAxisLabel"
+(select)="onSelect($event)">
+</ngx-charts-line-chart>
+</div>
+<div class = "container">
+<button (click)="onRefresh()">press</button></div>

@@ -46,7 +46,6 @@ this.stockService.retrieveInfo(this.name).subscribe(
   response =>{
     this.info = response;
     this.date = this.info["Meta Data"]["3. Last Refreshed"];
-   // this.getCompanyInfo();
    
   }
 )

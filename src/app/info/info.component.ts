@@ -9,14 +9,15 @@ import { StockDataService } from '../service/stock-data.service';
 })
 export class InfoComponent implements OnInit {
   company = new CompanyInfo();
-
+  news = new News();
   
   constructor(
     private stockService: StockDataService
   ) { }
 
   ngOnInit(): void {
-    this.getCompanyInfo()
+    this.getCompanyInfo();
+    this.getNews();
 
   }
 
@@ -29,5 +30,21 @@ export class InfoComponent implements OnInit {
       }
     )
     }
+
+  getNews(){
+    this.stockService.getNews(this.stockService.name).subscribe(
+      response => {
+        this.news = response;
+        this.news.articles = response["articles"];
+        console.log(this.news.articles);
+        
+      }
+    )
+  }
+
+}
+
+export class News{
+articles: any[]
 
 }

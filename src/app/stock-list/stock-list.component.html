@@ -1,22 +1,38 @@
 <input type = "text" [(ngModel)] = "name">
-
-  
-      <button (click)="newItem()" class="btn btn-success">Submit</button>
+<button (click)="newItem()" class="btn btn-success">Submit</button>
  
 
 
-  <div class="list row">
-    <div class="col-md-6">
-      <h4>Tutorials List</h4>
-      <ul class="list-group">
-        <li
-          class="list-group-item"
+  <div class="container">
+    <table class="table">
+      
+      <thead>
+        <h4>Stocks List</h4>
+        <tr>
+            <th>Ticker</th>
+            <th>Closing Price</th>
+            <th>Average Price</th>
+            <th>Opening Price</th>
+            <th>Highest Price</th>
+            <th>Lowest Price</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr
+       
           *ngFor="let item of items"
         >
-        {{item.results[0].c}}
-        </li>
-      </ul>
+       <td>{{item.results[0].T}}</td>
+       <td>${{item.results[0].c}}</td>
+       <td>${{item.results[0].vw}}</td>
+        <td>${{item.results[0].o}}</td>
+        <td>${{item.results[0].h}}</td>
+        <td>${{item.results[0].l}}</td>
+        <td><button (click) = DeleteItem(item)>Delete</button></td>
+        </tr>
+    
 
-
-</div>
+    </tbody>
+    </table>
 </div>

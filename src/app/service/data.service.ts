@@ -4,18 +4,14 @@ import { AngularFireDatabase, AngularFireList} from '@angular/fire/database';
 
 
 export class Item{
-  key?: string | null;
+  key: string | null;
   results: any
-  //ticker?: string;
-  //description?: string;
-  //published?: boolean;
 
 }
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  public dbPath = '/tutorials';
   email: string;
   items: AngularFireList<Item>;
 
@@ -38,6 +34,7 @@ if(localStorage.getItem('email') === null) return;
 
   create(item: Item): any {
    if(localStorage.getItem('email') === null) return;
+   console.log(item)
     return this.items.push(item);
   }
 
