@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './core/auth.guard';
 import { LoginGuardGuard } from './core/login-guard.guard';
+import { ErrorComponent } from './error/error.component';
+import { HomeComponent } from './home/home.component';
 import { InfoComponent } from './info/info.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
@@ -19,7 +21,9 @@ const routes: Routes = [
   {path: 'list', component: StockListComponent, canActivate: [AuthGuard]},
   {path: 'info', component: InfoComponent, canActivate: [AuthGuard]},
   {path: 'logout', component: LogoutComponent},
-  {path: 'chart', component: StockChartComponent}
+  {path: 'chart', component: StockChartComponent},
+  {path: 'home', component: HomeComponent},
+  {path: '**', component: ErrorComponent}
 ];
 
 @NgModule({

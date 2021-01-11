@@ -1,14 +1,21 @@
 <input type = "text" [(ngModel)] = "name">
 <button (click)="newItem()" class="btn btn-success">Submit</button>
- 
+<br>
+
+
+  
 
 
   <div class="container">
+   
     <table class="table">
-      
+
       <thead>
         <h4>Stocks List</h4>
-        <tr>
+
+        
+
+       <tr>
             <th>Ticker</th>
             <th>Closing Price</th>
             <th>Average Price</th>
@@ -30,9 +37,9 @@
         <td>${{item.results[0].h}}</td>
         <td>${{item.results[0].l}}</td>
         <td><button (click) = DeleteItem(item)>Delete</button></td>
-        </tr>
+        </tr> 
     
 
     </tbody>
     </table>
-</div>
+</div> 

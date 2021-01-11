@@ -1,0 +1,12 @@
+.card{
+    height: 200px;
+    border-radius: 10px;
+}
+
+.card-header{
+    text-align: center;
+}
+
+.card-body{
+    text-align: center;
+}

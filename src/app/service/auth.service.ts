@@ -42,8 +42,9 @@ export class AuthService {
     this.auth
       .signInWithEmailAndPassword(email, password)
       .then(value => {
+        this.route.navigate(['home']);
         this.storeSession();
-        this.route.navigate(['logout']);
+        
         this.isLogged = false;
       })
       .catch(err => {

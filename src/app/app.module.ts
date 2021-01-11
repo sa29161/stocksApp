@@ -29,6 +29,10 @@ import { LoginGuardGuard } from './core/login-guard.guard';
 import { StockChartComponent } from './stock-chart/stock-chart.component';
 import { CommonModule } from '@angular/common';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { HomeComponent } from './home/home.component';
+import { ErrorComponent } from './error/error.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 
 
@@ -43,7 +47,9 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     LogoutComponent,
     StockListComponent,
     InfoComponent,
-    StockChartComponent
+    StockChartComponent,
+    HomeComponent,
+    ErrorComponent
   ],
   imports: [
     CommonModule,
@@ -60,7 +66,9 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     MatInputModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    NgxChartsModule
+    NgxChartsModule,
+    NgbModule
+  
   ],
   providers: [ 
 
