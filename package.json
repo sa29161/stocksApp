@@ -22,6 +22,8 @@
     "@angular/platform-browser": "~11.0.5",
     "@angular/platform-browser-dynamic": "~11.0.5",
     "@angular/router": "~11.0.5",
+    "@ng-bootstrap/ng-bootstrap": "^8.0.1",
+    "@ng-bootstrap/schematics": "^2.0.0-alpha.1",
     "@swimlane/ngx-charts": "^16.0.0",
     "angularfire2": "^5.4.2",
     "bootstrap": "^3.4.1",

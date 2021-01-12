@@ -47,7 +47,7 @@ export class StockChartComponent implements OnInit {
   }
 
   public onRefresh(): void {
-    this.single = this.chartService.getStaticData();
+   // this.single = this.chartService.getStaticData();
   }
 }
 
