@@ -6,6 +6,8 @@ import { AngularFireDatabase, AngularFireList} from '@angular/fire/database';
 export class Item{
   key: string | null;
   results: any
+  change : number = 0;
+  startingNum: number = 0;
 
 }
 @Injectable({

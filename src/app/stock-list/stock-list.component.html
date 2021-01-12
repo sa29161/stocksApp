@@ -1,5 +1,16 @@
-<input type = "text" [(ngModel)] = "name">
-<button (click)="newItem()" class="btn btn-success">Submit</button>
+<p>
+	<span class="input">
+    <input type="text" placeholder="Enter Ticker" [(ngModel)] = "name">
+    
+    <span></span>	
+   
+  </span>
+  &nbsp;
+  
+  <button (click)="newItem()" class="btn-hover color-8">Add</button>
+
+</p>
+
 <br>
 
 
@@ -12,8 +23,6 @@
 
       <thead>
         <h4>Stocks List</h4>
-
-        
 
        <tr>
             <th>Ticker</th>
@@ -36,7 +45,7 @@
         <td>${{item.results[0].o}}</td>
         <td>${{item.results[0].h}}</td>
         <td>${{item.results[0].l}}</td>
-        <td><button (click) = DeleteItem(item)>Delete</button></td>
+        <td><button class="btn-hover color-8" (click) = DeleteItem(item)>Delete</button></td>
         </tr> 
     
 

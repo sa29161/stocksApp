@@ -1,12 +1,12 @@
 
 
- <div class="form-group">
-    <input  class="form-control" value = "text" [(ngModel)]="name" (input)="$event.target.value.length > 0 && getStocks()">
-        
-    </div>
-
-
-  <ul class="list-group">
+<p>
+	<span class="input">
+		<input type="text" placeholder="Enter Company Name or Ticker" [(ngModel)]="name" (input)="$event.target.value.length > 0 && getStocks()">
+		<span></span>	
+	</span>
+</p>
+  <!-- <ul class="list-group">
     <li class="list-group-item"
         *ngFor="let item of stock.bestMatches; let i = index"
         
@@ -15,7 +15,17 @@
       >{{item["1. symbol"]}} ({{item["2. name"]}})
       </a>
     </li>
-  </ul>
+  </ul> -->
+
+    <div class="items">
+      <div class="items-body">
+        <div class="items-body-content" *ngFor="let item of stock.bestMatches; let i = index">
+          <a routerLink="/info" (click) = setVar(i)
+      >{{item["1. symbol"]}} ({{item["2. name"]}})
+      </a>
+        </div>
+      </div>
+    </div>
 
 
 
